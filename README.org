@@ -1,11 +1,11 @@
 #+TITLE: Lookup marked text by GoldenDict in Emacs
 
 * Features
-- Lookup marked text by GoldenDict
-- PDF file support in [[https://github.com/politza/pdf-tools][=pdf-view-mode=]]
+- Lookup marked text by [[http://goldendict.org/][GoldenDict]]
+- PDF file support in [[https://github.com/politza/pdf-tools][pdf-view-mode]]
 
 * Code
- Functions to be used to lookup marked text:
+ Functions used to lookup marked text:
 
 #+BEGIN_SRC elisp
   (defun look-up-dict (word)
