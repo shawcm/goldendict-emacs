@@ -1,0 +1,35 @@
+#+TITLE: Lookup marked text by GoldenDict in Emacs
+
+* Features
+- Lookup marked text by GoldenDict
+- PDF file support in [[https://github.com/politza/pdf-tools][=pdf-view-mode=]]
+
+* Code
+ Functions to be used to lookup marked text:
+
+#+BEGIN_SRC elisp
+  (defun look-up-dict (word)
+    (start-process "goldendict" nil "goldendict" word)
+    )
+
+  (defun look-up-dict-marked ()
+    (interactive)
+    (let ((word ""))
+      (if (equal major-mode 'pdf-view-mode)
+          (setq word (car (pdf-view-active-region-text)))
+        (setq word  (buffer-substring (mark) (point))))
+      (look-up-dict word)
+      )
+    )
+#+END_SRC
+
+* Install
+1. Copy and paste the previous code to =~/.emacs.d/init.el=
+2. add a key binding, for example:
+   #+BEGIN_SRC elisp
+     (global-set-key (kbd "C-c d") 'look-up-dict-marked)
+   #+END_SRC
+
+* Usage
+1. In Emacs, mark words by mouse or =<C-Space>=
+2. Press =<C-c d>= to invoke goldendict
